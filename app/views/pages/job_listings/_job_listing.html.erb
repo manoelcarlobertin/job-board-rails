@@ -1,0 +1,38 @@
+<div id="<%= dom_id job_listing %>" class="w-full sm:w-auto my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= job_listing.title %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Salary:</strong>
+    <%= job_listing.salary %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Body:</strong>
+    <%= job_listing.body %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Company:</strong>
+    <%= job_listing.company %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Location:</strong>
+    <%= job_listing.location %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Meta image:</strong>
+    <%= link_to job_listing.meta_image.filename, job_listing.meta_image, class: "text-gray-700 underline hover:no-underline" if job_listing.meta_image.attached? %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Bunner image:</strong>
+    <%= link_to job_listing.bunner_image.filename, job_listing.bunner_image, class: "text-gray-700 underline hover:no-underline" if job_listing.bunner_image.attached? %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Tags:</strong>
+    <%= job_listing.tags %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= job_listing.user_id %>
+  </div>
+</div>

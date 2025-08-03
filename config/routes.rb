@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :pages do
+    resources :job_listings
+  end
   get "pages/home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
