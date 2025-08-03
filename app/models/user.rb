@@ -3,4 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   # associations
   has_many :job_listings, dependent: :destroy
+  # validations
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true, length: { minimum: 6 }
 end
