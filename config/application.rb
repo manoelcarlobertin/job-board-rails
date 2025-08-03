@@ -38,5 +38,13 @@ module JobBoardRails
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Configure os geradores para pular a criação de certos arquivos
+    config.generators do |g|
+      g.helper         false  # Não cria helpers
+      g.routing_specs  false  # Não cria arquivos de teste de rota
+      g.controller_specs false # Não cria arquivos de teste de controller
+      g.view_specs     false  # Não cria arquivos de teste de view
+    end
   end
 end
