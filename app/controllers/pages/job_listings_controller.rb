@@ -5,7 +5,11 @@ module Pages
 
     # GET /pages/job_listings or /pages/job_listings.json
     def index
-      @pages_job_listings = Pages::JobListing.all
+      if params[:query].present?
+        @job_listings = JobListing.where("title LIKE ? OR tags LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+      else
+        @job_listings = JobListing.all
+      end
     end
 
     # GET /pages/job_listings/1 or /pages/job_listings/1.json
