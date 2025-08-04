@@ -19,3 +19,4 @@ module Pages
     scope :search, ->(query) { where("title LIKE ? OR tags LIKE ?", "%#{query}%", "%#{query}%") }
   end
 end
+# Isso tornou a consulta reutilizável e o controller mais legível.

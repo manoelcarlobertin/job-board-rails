@@ -3,12 +3,12 @@ module Pages
     before_action :authenticate_user!, except: [ :index, :show ]
     before_action :set_pages_job_listing, only: %i[ show edit update destroy ]
 
-  def index
-    @job_listings = JobListing.all
-    if params[:query].present?
-      @job_listings = @job_listings.search(params[:query])
+    def index
+      @job_listings = JobListing.all
+      if params[:query].present?
+        @job_listings = @job_listings.search(params[:query])
+      end
     end
-  end
 
     # GET /pages/job_listings/1 or /pages/job_listings/1.json
     def show
