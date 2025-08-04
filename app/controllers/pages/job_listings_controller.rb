@@ -3,14 +3,12 @@ module Pages
     before_action :authenticate_user!, except: [ :index, :show ]
     before_action :set_pages_job_listing, only: %i[ show edit update destroy ]
 
-    # GET /pages/job_listings or /pages/job_listings.json
-    def index
-      if params[:query].present?
-        @job_listings = JobListing.where("title LIKE ? OR tags LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
-      else
-        @job_listings = JobListing.all
-      end
+  def index
+    @job_listings = JobListing.all
+    if params[:query].present?
+      @job_listings = @job_listings.search(params[:query])
     end
+  end
 
     # GET /pages/job_listings/1 or /pages/job_listings/1.json
     def show
@@ -18,7 +16,7 @@ module Pages
 
     # GET /pages/job_listings/new
     def new
-      @pages_job_listing = Pages::JobListing.new
+      @pages_job_listing = JobListing.new
     end
 
     # GET /pages/job_listings/1/edit
@@ -27,7 +25,7 @@ module Pages
 
     # POST /pages/job_listings or /pages/job_listings.json
     def create
-      @pages_job_listing = Pages::JobListing.new(pages_job_listing_params)
+      @pages_job_listing = JobListing.new(pages_job_listing_params)
 
       respond_to do |format|
         if @pages_job_listing.save
@@ -66,7 +64,7 @@ module Pages
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_pages_job_listing
-      @pages_job_listing = Pages::JobListing.find(params.expect(:id))
+      @pages_job_listing = JobListing.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
